@@ -1,11 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_Hant_tw">
   <head>
+    <form action="main.php" method="get">
     <meta charset="utf-8">
-    <title>醜狗泰瑋</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
+    <link rel="stylesheet" href="swipe2_css.css">
+
+    <title>Sign</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+         $(document).ready(function () {
+           $("#verify").click(function() {
+             /*--------------------------------------------------------*/
+             if($("#verify").val()==="確認"){
+               $.ajax({
+                   type: "GET", //傳送方式
+                   url: "Sign_in.php", //傳送目的地
+                   dataType: "json", //資料格式
+                   data: { //傳送資料
+                       inputID: $("#inputID").val(),
+                       inputPassword: $("#inputPassword").val(),
+                   },
+                   success: function(data) {
+                       if (data.inputID) { //如果後端回傳 json 資料有 nickname
+                           $("#res").html('<font color="#007500">確認成功，您的帳號為「<font color="#0000ff">' + data.inputID + '</font>」，密碼為「<font color="#0000ff">' + data.inputPassword + '</font>」！</font>');
+                           $("#verify1").show();
+                           if(data.admin === "1"){
+                             $("#admin").val("1");
+                           }else{
+                             $("#admin").val("0");
+                           }
+                       } else { //否則讀取後端回傳 json 資料 errorMsg 顯示錯誤訊息
+                           $("#res").html('<font color="#ff0000">' + data.errorMsg + '</font>');
+                       }
+                   },
+                   error: function(jqXHR) {
+                       $("#res").html('<font color="#ff0000">發生錯誤：' + jqXHR.status + '</font>');
+                   }
+               })
+             }
+           })
+      })
+    </script>
   </head>
+
   <body>
-    <h1 fontcolor:red>肛交大王陳泰瑋</h1>
-    
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img src="http://www.im.nuu.edu.tw/wordpress/wp-content/uploads/2016/11/im-logo-s.png" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- Login Form -->
+        <form>
+          <input type="text" id="inputID" class="fadeIn second" name="inputID" placeholder="StudentID" required="" maxlength="8" >
+          <input type="password" id="inputPassword" class="fadeIn third" name="inputPassword" placeholder="Password" required="" maxlength="9">
+          <p id="res" class="fadeIn fourth">...</p>
+          <input id="verify" type="button" class="fadeIn fifth" value="確認">
+          <input id="verify1" type="submit" class="fadeIn third" value="登入" style="display:none">
+          <input type="hidden" name="admin" id="admin" vlaue="0">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          <a class="underlineHover" href="swipe_sign_up.html">還沒有帳號嗎?點我註冊</a>
+        </div>
+
+      </div>
+    </div>
   </body>
 </html>
