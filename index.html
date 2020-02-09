@@ -1,1 +1,89 @@
+<main>
+  <div>
+    <h1>This is a four-quadrant CSS-only gradient with four unique colors, using one element with one pseudo-element.</h1>
+  </div>
+</main>
 
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #F5C8BF;
+  font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  align-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: relative;
+  padding: 12px;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#443d3d), to(#485843));
+  background: linear-gradient(90deg, #443d3d 0%, #485843 100%);
+}
+main:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
+          mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(black));
+  background: -webkit-gradient(linear, left top, right top, from(#5f4955), to(#51495f));
+  background: linear-gradient(90deg, #5f4955 0%, #51495f 100%);
+}
+
+div {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 432px;
+}
+div h1 {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  align-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 18px 24px;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  background: white;
+  color: #a49596;
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+div:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  background: radial-gradient(ellipse at center, #322d29 0%, rgba(50, 45, 41, 0) 50%);
+  z-index: 0;
+}
+
+<style>  
